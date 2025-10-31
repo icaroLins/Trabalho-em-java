@@ -12,48 +12,96 @@ public class Votos {
     private int van;
     private int wil;
 
-    //Metodos para somar os votos de cada senador.
+    private int bol;
+    private int had;
+    private int cir;
+    private int bou;
+    private int dac;
+    private int msi;
+    private int alc;
+    private int dia;
+    private int mei;
+    private int amo;
+
+    private int nulosSen;
+    private int brancosSen;
+    private int nulosPres;
+    private int brancosPres;
+
    public int somaAge(){
-    return age++;
+    return ++age;
    }
    public int somaFab(){
-    return age++;
+    return ++fab;
    }
    public int somaJor(){
-    return age++;
+    return ++jor;
    }
    public int somaLuc(){
-    return age++;
+    return ++luc;
    }
    public int somaLui(){
-    return age++;
+    return ++lui;
    }
    public int somaMar(){
-    return age++;
+    return ++mar;
    }
    public int somaAle(){
-    return age++;
+    return ++ale;
    }
    public int somaGel(){
-    return age++;
+    return ++gel;
    }
    public int somaMag(){
-    return age++;
+    return ++mag;
    }
    public int somaPir(){
-    return age++;
+    return ++pir;
    }
    public int somaVan(){
-    return age++;
+    return ++van;
    }
    public int somaWil(){
-    return age++;
+    return ++wil;
    }
-    
 
+   public int somaBol(){
+    return ++bol;
+   }
+   public int somaHad(){
+    return ++had;
+   }
+   public int somaCir(){
+    return ++cir;
+   }
+   public int somaBou(){
+    return ++bou;
+   }
+   public int somaDac(){
+    return ++dac;
+   }
+   public int somaMsi(){
+    return ++msi;
+   }
+   public int somaAlc(){
+    return ++alc;
+   }
+   public int somaDia(){
+    return ++dia;
+   }
+   public int somaMei(){
+    return ++mei;
+   }
+   public int somaAmo(){
+    return ++amo;
+   }
 
-    //getters para puxa a qunatidade de votos.
-    public int getAge() {
+   public int somaNuloSen(){ return ++nulosSen; }
+   public int somaBrancoSen(){ return ++brancosSen; }
+   public int somaNuloPres(){ return ++nulosPres; }
+   public int somaBrancoPres(){ return ++brancosPres; }
+
+   public int getAge() {
         return age;
     }
     public int getFab() {
@@ -88,6 +136,29 @@ public class Votos {
     }
     public int getWil() {
         return wil;
+    }
+
+    public int getBol() { return bol; }
+    public int getHad() { return had; }
+    public int getCir() { return cir; }
+    public int getBou() { return bou; }
+    public int getDac() { return dac; }
+    public int getMsi() { return msi; }
+    public int getAlc() { return alc; }
+    public int getDia() { return dia; }
+    public int getMei() { return mei; }
+    public int getAmo() { return amo; }
+
+    public int getNulosSen() { return nulosSen; }
+    public int getBrancosSen() { return brancosSen; }
+    public int getNulosPres() { return nulosPres; }
+    public int getBrancosPres() { return brancosPres; }
+
+    public int getTotalValidSen(){
+        return age+fab+jor+luc+lui+mar+ale+gel+mag+pir+van+wil;
+    }
+    public int getTotalValidPres(){
+        return bol+had+cir+bou+dac+msi+alc+dia+mei+amo;
     }
 
 }
