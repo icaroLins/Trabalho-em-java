@@ -13,6 +13,8 @@ public class Tabela {
         System.out.println("\t\tSantana Pires           \t510");
         System.out.println("\t\tVanderlan               \t111");
         System.out.println("\t\tWilder Morais           \t251");
+        System.out.println("\t\tVoto em branco          \t0");
+        System.out.println("\t\tVoto nulo               \t1");
     }
 
     public void tabelaPresidente(){
@@ -27,5 +29,7 @@ public class Tabela {
         System.out.println("\t\tÁlvaro Dias               \t19");
         System.out.println("\t\tHenrique Meirelles        \t15");
         System.out.println("\t\tJoão Amoedo               \t30");
+        System.out.println("\t\tVoto em branco            \t0");
+        System.out.println("\t\tVoto nulo                 \t1");
     }
 }

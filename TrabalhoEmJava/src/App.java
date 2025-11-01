@@ -2,6 +2,17 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
+        int totalVotosNullPre;
+        int totalVotosBranPre;
+        int totalVotosBranSen;
+        int totalVotosNullSen;
+        int totalValidSen;
+        int totalValidPres;
+        double percentNullPre;
+        double percentBranPre;
+        double percentNUllSen;
+        double percentBranSen;
+
         Scanner scanner = new Scanner(System.in);
 
         Tabela tabela = new Tabela();
@@ -17,7 +28,13 @@ public class App {
             System.out.print("Senador 1: ");
             String s1 = scanner.hasNextLine() ? scanner.nextLine().trim() : "";
             int sen1;
-            try { sen1 = Integer.parseInt(s1); } catch (Exception e) { sen1 = Integer.MIN_VALUE; }
+
+            // Evitar que o programa pare de funcionar caso o usuário digite algo que não seja número.
+            try {
+                sen1 = Integer.parseInt(s1);
+            } catch (Exception e) {
+                sen1 = Integer.MIN_VALUE;
+            }
             if (sen1 == 0) {
                 votos.somaBrancoSen();
             } else {
@@ -41,11 +58,19 @@ public class App {
             System.out.print("Senador 2: ");
             String s2 = scanner.hasNextLine() ? scanner.nextLine().trim() : "";
             int sen2;
-            try { sen2 = Integer.parseInt(s2); } catch (Exception e) { sen2 = Integer.MIN_VALUE; }
+
+            //Evitar que o programa pare de funcionar caso o usuário digite algo que não seja número.
+            try {
+                sen2 = Integer.parseInt(s2);
+            } catch (Exception e) {
+                sen2 = Integer.MIN_VALUE;
+            }
             if (sen2 == 0) {
                 votos.somaBrancoSen();
             } else {
-                boolean sen1Valido = (sen1 == 150 || sen1 == 500 || sen1 == 444 || sen1 == 405 || sen1 == 135 || sen1 == 456 || sen1 == 290 || sen1 == 131 || sen1 == 210 || sen1 == 510 || sen1 == 111 || sen1 == 251);
+                boolean sen1Valido = (sen1 == 150 || sen1 == 500 || sen1 == 444 || sen1 == 405 || sen1 == 135
+                        || sen1 == 456 || sen1 == 290 || sen1 == 131 || sen1 == 210 || sen1 == 510 || sen1 == 111
+                        || sen1 == 251);
                 if (sen2 == sen1 && sen1Valido) {
                     System.out.println("Voto repetido para Senador. Contado como NULO.");
                     votos.somaNuloSen();
@@ -73,7 +98,13 @@ public class App {
             System.out.print("Digite o número do seu candidato à Presidência (0 = BRANCO): ");
             String p1 = scanner.hasNextLine() ? scanner.nextLine().trim() : "";
             int pres1;
-            try { pres1 = Integer.parseInt(p1); } catch (Exception e) { pres1 = Integer.MIN_VALUE; }
+
+            //Evitar que o programa pare de funcionar caso o usuário digite algo que não seja número.
+            try {
+                pres1 = Integer.parseInt(p1);
+            } catch (Exception e) {
+                pres1 = Integer.MIN_VALUE;
+            }
             if (pres1 == 0) {
                 votos.somaBrancoPres();
             } else {
@@ -108,12 +139,17 @@ public class App {
             System.out.println("Nulos: " + votos.getNulosSen());
             System.out.println("Brancos: " + votos.getBrancosSen());
 
-            int totalValidSen = votos.getTotalValidSen();
-            double percNulosSen = totalValidSen > 0 ? (votos.getNulosSen() * 100.0) / totalValidSen : 0.0;
-            double percBrancosSen = totalValidSen > 0 ? (votos.getBrancosSen() * 100.0) / totalValidSen : 0.0;
+            totalValidSen = votos.getTotalValidSen();
 
-            System.out.printf("%% Nulos sobre válidos: %.2f%%%n", percNulosSen);
-            System.out.printf("%% Brancos sobre válidos: %.2f%%%n", percBrancosSen);
+            totalVotosNullSen = votos.getNulosSen();
+
+            totalVotosBranSen = votos.getBrancosSen();
+
+            percentNUllSen = totalValidSen > 0 ? votos.Percent(totalVotosNullSen, totalValidSen) : 0.0;
+            percentBranSen = totalValidSen > 0 ? votos.Percent(totalVotosBranSen, totalValidSen) : 0.0;
+
+            System.out.printf("%% Nulos sobre válidos: %.2f%%%n", percentNUllSen);
+            System.out.printf("%% Brancos sobre válidos: %.2f%%%n", percentBranSen);
 
             System.out.println("\n===== RESULTADOS PRESIDENTE =====");
             System.out.println("Bolsonaro: " + votos.getBol());
@@ -129,18 +165,21 @@ public class App {
             System.out.println("Nulos: " + votos.getNulosPres());
             System.out.println("Brancos: " + votos.getBrancosPres());
 
-            int totalValidPres = votos.getTotalValidPres();
+            totalValidPres = votos.getTotalValidPres();
 
-            double percNulosPres = totalValidPres > 0 ? (votos.getNulosPres() * 100.0) / totalValidPres : 0.0;
+            totalVotosNullPre = votos.getNulosPres();
+            totalVotosBranPre = votos.getBrancosPres();
 
-            double percBrancosPres = totalValidPres > 0 ? (votos.getBrancosPres() * 100.0) / totalValidPres : 0.0;
-            
-            System.out.printf("%% Nulos sobre válidos: %.2f%%%n", percNulosPres);
-            System.out.printf("%% Brancos sobre válidos: %.2f%%%n", percBrancosPres);
+            percentBranPre = totalValidPres > 0 ? votos.Percent(totalVotosBranPre, totalValidPres) : 0.0;
+            percentNullPre = totalValidPres > 0 ? votos.Percent(totalVotosNullPre, totalValidPres) : 0.0;
+
+            System.out.printf("%% Nulos sobre válidos: %.2f%%%n", percentNullPre);
+            System.out.printf("%% Brancos sobre válidos: %.2f%%%n", percentBranPre);
 
             System.out.print("Deseja continuar a votação? (S/N): ");
-            String resp = scanner.hasNextLine() ? scanner.nextLine().trim() : "N";
-            if (resp.equalsIgnoreCase("N")) {
+            String resp = scanner.nextLine().trim().toUpperCase();
+
+            if (!resp.equals("S")) {
                 continuar = false;
             }
         }
