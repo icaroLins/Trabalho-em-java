@@ -28,6 +28,17 @@ public class Votos {
     private int nulosPres;
     private int brancosPres;
 
+    private double percentNuloSen;
+
+    //metodo para calcular a porcentagem de votos brancos e nulos sobre o total de votos tanto do presidente tanto para senadores.
+    public double Percent(int votosInv, int total){
+        return (votosInv*100)/total;
+    }
+
+   public double getPercentNuloSen() {
+        return percentNuloSen;
+    }
+
    public int somaAge(){
     return ++age;
    }
